@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: warehouse-22a-ingress
+  namespace: warehouse-22a
+  annotations:
+    cert-manager.io/issuer: "prd-dns-issuer"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+spec:
+  ingressClassName: "nginx-ext"
+  tls:
+  - hosts:
+    - bragarealtyservices.com
+    secretName: warehouse-22a-tls
+  rules:
+  - host: bragarealtyservices.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: warehouse-22a
+            port:
+              number: 80

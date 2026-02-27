@@ -45,7 +45,7 @@ docker push matthieujbraga/warehouse-22a:latest
 Manifests live in `../k8s/warehouse-22a/` and follow the cluster conventions:
 - **Namespace**: `warehouse-22a`
 - **Image**: `matthieujbraga/warehouse-22a:latest`
-- **Ingress**: `nginx-ext` class, host `22a.bragarealtyservices.com`
+- **Ingress**: `nginx-ext` class, host `bragarealtyservices.com`
 - **TLS**: cert-manager with DNS-01 validation (prd-dns-issuer, TSIG/RFC2136)
 
 ```bash

@@ -25,7 +25,7 @@ Created a static rental listing website for a warehouse property at 22 A Street,
 ## Open Items
 - [ ] Fix DNS for `bragarealtyservices.com` on BIND server (192.168.224.100) so cert-manager DNS-01 challenge can complete
 - [ ] Verify TLS certificate issues after DNS fix
-- [ ] Set up public DNS A record for `22a.bragarealtyservices.com` pointing to the external IP or edge router
+- [ ] Set up public DNS A record for `bragarealtyservices.com` pointing to the external IP or edge router
 
 ## Cluster Conventions Reference
 - Namespaces: one per app

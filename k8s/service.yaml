@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: warehouse-22a
+  namespace: warehouse-22a
+  labels:
+    app: warehouse-22a
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    name: http
+  selector:
+    app: warehouse-22a

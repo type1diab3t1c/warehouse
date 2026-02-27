@@ -48,6 +48,7 @@ function openLightbox() {
 function closeLightbox() {
   lightbox.classList.remove('active');
   document.body.style.overflow = '';
+  resetZoom();
 }
 
 function showPrev() {
@@ -61,10 +62,38 @@ function showNext() {
 }
 
 function updateLightbox() {
+  resetZoom();
   lightboxImg.src = currentImages[currentIndex].src;
   lightboxImg.alt = currentImages[currentIndex].alt;
   lightboxCounter.textContent = `${currentIndex + 1} / ${currentImages.length}`;
 }
+
+// ===== Lightbox Zoom =====
+const lightboxContent = lightbox.querySelector('.lightbox-content');
+
+function resetZoom() {
+  lightboxContent.classList.remove('zoomed');
+  lightboxContent.scrollTop = 0;
+  lightboxContent.scrollLeft = 0;
+}
+
+lightboxImg.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const isZoomed = lightboxContent.classList.toggle('zoomed');
+  if (isZoomed) {
+    // Scroll to the click point after zoom
+    requestAnimationFrame(() => {
+      const rect = lightboxContent.getBoundingClientRect();
+      const img = lightboxImg;
+      const scaleX = img.naturalWidth / rect.width;
+      const scaleY = img.naturalHeight / rect.height;
+      const clickX = (e.clientX - rect.left) / rect.width;
+      const clickY = (e.clientY - rect.top) / rect.height;
+      lightboxContent.scrollLeft = (img.naturalWidth - rect.width) * clickX;
+      lightboxContent.scrollTop = (img.naturalHeight - rect.height) * clickY;
+    });
+  }
+});
 
 lightboxClose.addEventListener('click', closeLightbox);
 lightboxPrev.addEventListener('click', showPrev);
