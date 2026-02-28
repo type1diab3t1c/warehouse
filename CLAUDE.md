@@ -42,7 +42,7 @@ docker push matthieujbraga/warehouse-22a:latest
 ```
 
 ## Kubernetes
-Manifests live in `../k8s/warehouse-22a/` and follow the cluster conventions:
+Manifests live in `k8s/` within this repo and follow the cluster conventions:
 - **Namespace**: `warehouse-22a`
 - **Image**: `matthieujbraga/warehouse-22a:latest`
 - **Ingress**: `nginx-ext` class, host `bragarealtyservices.com`
@@ -50,13 +50,16 @@ Manifests live in `../k8s/warehouse-22a/` and follow the cluster conventions:
 
 ```bash
 # Apply all manifests
-kubectl apply -f ../k8s/warehouse-22a/namespace.yaml
-kubectl apply -f ../k8s/warehouse-22a/tsig-secret.yaml
-kubectl apply -f ../k8s/warehouse-22a/prd-dns-issuer.yaml
-kubectl apply -f ../k8s/warehouse-22a/deployment.yaml
-kubectl apply -f ../k8s/warehouse-22a/service.yaml
-kubectl apply -f ../k8s/warehouse-22a/ingress.yaml
+kubectl apply -f k8s/namespace.yaml
+kubectl apply -f k8s/tsig-secret.yaml
+kubectl apply -f k8s/prd-dns-issuer.yaml
+kubectl apply -f k8s/deployment.yaml
+kubectl apply -f k8s/service.yaml
+kubectl apply -f k8s/ingress.yaml
 ```
+
+## Build & Deploy
+Use the `/build-deploy` skill to build, push, and deploy in one step.
 
 ## Photo-to-Page Mapping
 | Page | Photo prefixes |
