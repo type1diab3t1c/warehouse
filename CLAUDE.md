@@ -1,11 +1,11 @@
 # Warehouse - 22 A Street Property Website
 
 ## Project Overview
-Static website for a warehouse rental property at 22 A Street, Edgartown, Martha's Vineyard. Served via nginx in a Docker container, deployed to Kubernetes.
+Static website for a warehouse property (for sale or lease) at 22 A Street, Edgartown, Martha's Vineyard. Served via nginx in a Docker container, deployed to Kubernetes.
 
 ## Architecture
 - **Pure static site**: HTML, CSS, vanilla JS — no frameworks or build step
-- **Multi-page layout**: Landing page (`index.html`) + 6 dedicated area subpages
+- **Multi-page layout**: Landing page (`index.html`) + 5 dedicated area subpages
 - **Containerized**: nginx:alpine Docker image serving static files
 - **Deployed**: Kubernetes cluster with external nginx ingress, TLS via cert-manager
 
@@ -17,9 +17,8 @@ warehouse/
 │   ├── semi-bay-1.html    # Semi-trailer loading bay 1
 │   ├── semi-bay-2.html    # Semi-trailer loading bay 2
 │   ├── drive-in.html      # Drive-in loading bay
-│   ├── office-1.html      # Office 1 - ground floor
-│   ├── office-2.html      # Office 2 - upstairs with kitchen
-│   ├── office-3.html      # Office 3 - upstairs with bay overlook
+│   ├── offices-ground.html # Ground floor offices (3) - customer-facing
+│   ├── offices-upper.html  # Upper floor offices (3) - operations/backend
 │   ├── style.css          # All styling (dark theme, responsive, lightbox)
 │   └── script.js          # Lightbox, nav toggle, scroll animations
 ├── pics/                  # Property photos (51 JPEGs)
@@ -64,13 +63,12 @@ Use the `/build-deploy` skill to build, push, and deploy in one step.
 ## Photo-to-Page Mapping
 | Page | Photo prefixes |
 |------|---------------|
-| Landing / overview | all_three_loading_bays, north_side*, south_side*, semi_parking*, electrical*, radiant_heat* |
+| Landing / overview | office_entry_2 (hero), all_three_loading_bays, north_side*, south_side*, semi_parking*, electrical*, radiant_heat* |
 | semi-bay-1.html | semi_bay_1*, semi_loading_bay_1 |
 | semi-bay-2.html | semi_bay_2*, semi_loading_bay_2 |
 | drive-in.html | drive_in_bay* |
-| office-1.html | office_1*, office_entry* |
-| office-2.html | office_upstairs_2* |
-| office-3.html | office_upstairs_3* |
+| offices-ground.html | office_entry_*, office_entry_inside_*, office_downstairs_* |
+| offices-upper.html | office_upstairs_* |
 
 ## Contact (on-site)
 - **Agent**: David Braga
